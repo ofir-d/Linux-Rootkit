@@ -3,20 +3,20 @@
 ### What does the Rootkit do?
 interface between the user space to kernel space where the rootkit resides.
 Keylogging.
-⋅⋅* Hiding the rootkit from lsmod command.
-⋅⋅* Turning a simple user into a root.
-⋅⋅* Hiding files in the system.
-⋅⋅* Hiding processes in the system.
+* Hiding the rootkit from lsmod command.
+* Turning a simple user into a root.
+* Hiding files in the system.
+* Hiding processes in the system.
 
 ### How It Works-
 interface between the user space to kernel space:
 The rootkit I wrote is a kernel module, that is, a piece of code that is loaded into the kernel at runtime. Most of the uses of kernel module are for device drivers and indeed the rootkit I wrote is also a device driver. It is linked to a device called /dev/hideme and actually implements functions to read and write to it.
 The driver will ignore any writing to the device except for the following magic numbers:
-⋅⋅* givekeys, hidekeys
-⋅⋅* showmodule, hidemodule 
-⋅⋅* giveroot, leaveroot
-⋅⋅* showfiles, hidefiles 
-⋅⋅* showproc, hideproc
+* givekeys, hidekeys
+* showmodule, hidemodule 
+* giveroot, leaveroot
+* showfiles, hidefiles 
+* showproc, hideproc
 In addition, therootkit makes a hook to the kill command (will be explained later) and through the command you can also interface with it.
 
 ### Keylogging
